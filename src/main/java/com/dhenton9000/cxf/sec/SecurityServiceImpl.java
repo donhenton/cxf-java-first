@@ -67,6 +67,13 @@ public class SecurityServiceImpl implements SecurityService {
         return this.getUserDao().getUsers();
     }
 
+    @Override
+    public User addUser(@WebParam(name = "login") String login,   
+            @WebParam(name = "userName") String userName) {
+        
+        return this.getUserDao().addUser(login,userName);
+    }
+    
     /**
      * @return the userDao
      */

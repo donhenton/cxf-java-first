@@ -9,6 +9,8 @@ import com.dhenton9000.cxf.sec.domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementSetter;
@@ -58,10 +60,11 @@ public class UserDao {
     }
 
     /**
-     *  returns the original user before modification 
+     * returns the original user before modification
+     *
      * @param u
-     * @return 
-    */
+     * @return
+     */
     public User saveUsers(final User u) {
         //  return new User();
 
@@ -134,6 +137,44 @@ public class UserDao {
         this.jdbcTemplate.execute(psc, action);
 
         return u;
+    }
+
+    public User addUser(String login, String userName) {
+
+        PreparedStatementCreator psc = (Connection con) -> {
+            PreparedStatement p
+                    = con.prepareStatement(
+                            "insert into users (login,username) values (?,?)",Statement.RETURN_GENERATED_KEYS);
+            p.setString(1, login);
+            p.setString(2, userName);
+            return p;
+        };
+        
+        // https://stackoverflow.com/questions/1915166/how-to-get-the-insert-id-in-jdbc
+        // https://www.arundhaj.com/blog/getGeneratedKeys-with-postgresql.html
+        
+        PreparedStatementCallback<User> action = (PreparedStatement ps) -> {
+            User newUser = new User();
+            newUser.setLogin(login);
+            newUser.setUserName(userName);
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("could not insert for user " + userName);
+            }
+
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    newUser.setId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+
+            return newUser;
+        };
+
+        User newUser = this.jdbcTemplate.execute(psc, action);
+        return newUser;
     }
 
 }

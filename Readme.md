@@ -8,3 +8,6 @@ mvn clean install tomcat:run -DskipTests=true
 ```
 http://localhost:8080/cxf-java-first/HelloWorld?wsdl
 ```
+
+
+Also covers use of JDBCTemplate.

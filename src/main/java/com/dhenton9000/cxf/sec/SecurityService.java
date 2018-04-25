@@ -3,6 +3,7 @@ package com.dhenton9000.cxf.sec;
 import com.dhenton9000.cxf.sec.domain.Group;
 import com.dhenton9000.cxf.sec.domain.User;
 import java.util.List;
+import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
@@ -16,6 +17,12 @@ public interface SecurityService {
     List<User> getUsers();
     User addUser(@WebParam(name = "login") String login, 
             @WebParam(name = "userName") String userName);
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "findUser")
+    public User findUser(@WebParam(name = "userId") final int userId);
     
 }
 

@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.transaction.annotation.Transactional;
 
 public class UserDao {
 
@@ -65,6 +66,7 @@ public class UserDao {
      * @param u
      * @return
      */
+    @Transactional
     public User saveUsers(final User u) {
         //  return new User();
 
@@ -101,6 +103,7 @@ public class UserDao {
 
     }
 
+    @Transactional
     public User deleteUsers(int id) {
         User u = null;
         ResultSetExtractor<User> rse = (ResultSet rs) -> {
@@ -139,20 +142,20 @@ public class UserDao {
         return u;
     }
 
+    @Transactional
     public User addUser(String login, String userName) {
 
         PreparedStatementCreator psc = (Connection con) -> {
             PreparedStatement p
                     = con.prepareStatement(
-                            "insert into users (login,username) values (?,?)",Statement.RETURN_GENERATED_KEYS);
+                            "insert into users (login,username) values (?,?)", Statement.RETURN_GENERATED_KEYS);
             p.setString(1, login);
             p.setString(2, userName);
             return p;
         };
-        
+
         // https://stackoverflow.com/questions/1915166/how-to-get-the-insert-id-in-jdbc
         // https://www.arundhaj.com/blog/getGeneratedKeys-with-postgresql.html
-        
         PreparedStatementCallback<User> action = (PreparedStatement ps) -> {
             User newUser = new User();
             newUser.setLogin(login);
@@ -160,6 +163,9 @@ public class UserDao {
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("could not insert for user " + userName);
+            }
+            if (login.equals("BOZO")) {
+                throw new RuntimeException("NO BOZOs!");
             }
 
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
@@ -175,6 +181,25 @@ public class UserDao {
 
         User newUser = this.jdbcTemplate.execute(psc, action);
         return newUser;
+    }
+
+    public User findUser(int userId) {
+
+        ResultSetExtractor<User> rse = (ResultSet rs) -> {
+            if (rs.next()) {
+                int uID = rs.getInt("user_id");
+                String login = rs.getString("login");
+                String userName = rs.getString("username");
+                return new User(userName, uID, login);
+            } else {
+                return null;
+            }
+        };
+        PreparedStatementSetter pss = (PreparedStatement ps) -> {
+            ps.setInt(1, userId);
+        };
+        User user = this.jdbcTemplate.query("select * from users where user_id = ?", pss, rse);
+        return user;
     }
 
 }

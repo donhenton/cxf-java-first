@@ -87,5 +87,14 @@ public class SecurityServiceImpl implements SecurityService {
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
+
+    /**
+     * Web service operation
+     */
+    @Override
+    public User findUser(final int userId) {
+        //TODO write your implementation code here:
+       return this.userDao.findUser(userId);
+    }
 }
 

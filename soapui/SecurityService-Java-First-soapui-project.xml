@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="88ea9a93-cc5d-4b2b-b061-01cea46f57f0" activeEnvironment="Default" name="SecurityService Java First" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="4eeb034e-e6eb-4f9f-86bb-07168c2fd335" wsaVersion="NONE" name="SecurityServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://sec.cxf.dhenton9000.com/}SecurityServiceImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/cxf-java-first/SecurityService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/cxf-java-first/SecurityService?wsdl"><con:part><con:url>http://localhost:8080/cxf-java-first/SecurityService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SecurityServiceImplService" targetNamespace="http://sec.cxf.dhenton9000.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://sec.cxf.dhenton9000.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://sec.cxf.dhenton9000.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="Group" type="tns:group"/>
+      <xs:element name="User" type="tns:user"/>
+      <xs:element name="addUser" type="tns:addUser"/>
+      <xs:element name="addUserResponse" type="tns:addUserResponse"/>
+      <xs:element name="deleteUsers" type="tns:deleteUsers"/>
+      <xs:element name="deleteUsersResponse" type="tns:deleteUsersResponse"/>
+      <xs:element name="getGroups" type="tns:getGroups"/>
+      <xs:element name="getGroupsResponse" type="tns:getGroupsResponse"/>
+      <xs:element name="getUsers" type="tns:getUsers"/>
+      <xs:element name="getUsersResponse" type="tns:getUsersResponse"/>
+      <xs:element name="saveUsers" type="tns:saveUsers"/>
+      <xs:element name="saveUsersResponse" type="tns:saveUsersResponse"/>
+      <xs:element name="sayHi" type="tns:sayHi"/>
+      <xs:element name="sayHiResponse" type="tns:sayHiResponse"/>
+      <xs:complexType name="getUsers">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getUsersResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:user"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="user">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="login" type="xs:string"/>
+          <xs:element name="userName" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="userName" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addUserResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:user"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="saveUsers">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:user"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="saveUsersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:user"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteUsers">
+        <xs:sequence>
+          <xs:element name="userId" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteUsersResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:user"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getGroups">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getGroupsResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:group"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="group">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="groupName" type="xs:string"/>
+          <xs:element minOccurs="0" name="id" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sayHi">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sayHiResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getGroupsResponse">
+    <wsdl:part element="tns:getGroupsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHiResponse">
+    <wsdl:part element="tns:sayHiResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUsersResponse">
+    <wsdl:part element="tns:deleteUsersResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsers">
+    <wsdl:part element="tns:getUsers" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUser">
+    <wsdl:part element="tns:addUser" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveUsers">
+    <wsdl:part element="tns:saveUsers" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUsers">
+    <wsdl:part element="tns:deleteUsers" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUserResponse">
+    <wsdl:part element="tns:addUserResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersResponse">
+    <wsdl:part element="tns:getUsersResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGroups">
+    <wsdl:part element="tns:getGroups" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHi">
+    <wsdl:part element="tns:sayHi" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveUsersResponse">
+    <wsdl:part element="tns:saveUsersResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SecurityService">
+    <wsdl:operation name="getUsers">
+      <wsdl:input message="tns:getUsers" name="getUsers"></wsdl:input>
+      <wsdl:output message="tns:getUsersResponse" name="getUsersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUser">
+      <wsdl:input message="tns:addUser" name="addUser"></wsdl:input>
+      <wsdl:output message="tns:addUserResponse" name="addUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveUsers">
+      <wsdl:input message="tns:saveUsers" name="saveUsers"></wsdl:input>
+      <wsdl:output message="tns:saveUsersResponse" name="saveUsersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUsers">
+      <wsdl:input message="tns:deleteUsers" name="deleteUsers"></wsdl:input>
+      <wsdl:output message="tns:deleteUsersResponse" name="deleteUsersResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGroups">
+      <wsdl:input message="tns:getGroups" name="getGroups"></wsdl:input>
+      <wsdl:output message="tns:getGroupsResponse" name="getGroupsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sayHi">
+      <wsdl:input message="tns:sayHi" name="sayHi"></wsdl:input>
+      <wsdl:output message="tns:sayHiResponse" name="sayHiResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SecurityServiceImplServiceSoapBinding" type="tns:SecurityService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="saveUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="saveUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGroups">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getGroups">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getGroupsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sayHi">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHi">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SecurityServiceImplService">
+    <wsdl:port binding="tns:SecurityServiceImplServiceSoapBinding" name="SecurityServiceImplPort">
+      <soap:address location="http://localhost:8080/cxf-java-first/SecurityService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/cxf-java-first/SecurityService</con:endpoint></con:endpoints><con:operation id="efb7e964-78dc-4f4a-b4b7-917a9aba87f4" isOneWay="false" action="" name="addUser" bindingOperationName="addUser" type="Request-Response" outputName="addUserResponse" inputName="addUser" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c8244fec-8e58-42d6-b0e0-6218f5609aab" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cxf-java-first/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://sec.cxf.dhenton9000.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:addUser>
+         <!--Optional:-->
+         <login>grump</login>
+         <!--Optional:-->
+         <userName>frump</userName>
+      </sec:addUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sec.cxf.dhenton9000.com/SecurityService/addUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="33bc1a47-ac78-40b4-9295-b68c999000ae" isOneWay="false" action="" name="deleteUsers" bindingOperationName="deleteUsers" type="Request-Response" outputName="deleteUsersResponse" inputName="deleteUsers" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7e25a718-4ff0-4ef0-9656-fbb656d725b3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cxf-java-first/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://sec.cxf.dhenton9000.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:deleteUsers>
+         <userId>65</userId>
+      </sec:deleteUsers>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sec.cxf.dhenton9000.com/SecurityService/deleteUsers"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e553327d-03ff-4145-a2e5-b636d419a6e8" isOneWay="false" action="" name="getGroups" bindingOperationName="getGroups" type="Request-Response" outputName="getGroupsResponse" inputName="getGroups" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="61d14262-3679-4a43-b5dd-952387f635b0" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cxf-java-first/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://sec.cxf.dhenton9000.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:getGroups/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sec.cxf.dhenton9000.com/SecurityService/getGroups"/></con:call></con:operation><con:operation id="fa8dbbd8-9705-4db5-b9df-8c0ae8eb4d7e" isOneWay="false" action="" name="getUsers" bindingOperationName="getUsers" type="Request-Response" outputName="getUsersResponse" inputName="getUsers" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="417606e4-d117-45fa-a284-e31ec8aca9e1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cxf-java-first/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://sec.cxf.dhenton9000.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:getUsers/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sec.cxf.dhenton9000.com/SecurityService/getUsers"/></con:call></con:operation><con:operation id="f613f9e1-bea8-499e-93e5-aecb512a2a43" isOneWay="false" action="" name="saveUsers" bindingOperationName="saveUsers" type="Request-Response" outputName="saveUsersResponse" inputName="saveUsers" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="942eb998-8a7c-46de-8cc2-ec63b1eb1e51" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cxf-java-first/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://sec.cxf.dhenton9000.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:saveUsers>
+         <!--Optional:-->
+         <arg0>
+            <id>?</id>
+            <login>?</login>
+            <userName>?</userName>
+         </arg0>
+      </sec:saveUsers>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sec.cxf.dhenton9000.com/SecurityService/saveUsers"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="da2c46ae-b629-49b3-96d8-97042383d12f" isOneWay="false" action="" name="sayHi" bindingOperationName="sayHi" type="Request-Response" outputName="sayHiResponse" inputName="sayHi" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="15c6c121-5831-4085-a918-dfea287bde30" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/cxf-java-first/SecurityService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sec="http://sec.cxf.dhenton9000.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sec:sayHi>
+         <!--Optional:-->
+         <arg0>?</arg0>
+      </sec:sayHi>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sec.cxf.dhenton9000.com/SecurityService/sayHi"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
